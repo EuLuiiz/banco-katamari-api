@@ -80,7 +80,7 @@ export class ArrayDatabase implements IDatabase {
         return true;
     }
 
-    read(type: string, dataId: number): any {
+    listID(type: string, dataId: number): any {
 
         if(this._data[type] === undefined){
             return undefined;

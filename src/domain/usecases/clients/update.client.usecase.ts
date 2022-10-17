@@ -8,7 +8,7 @@ class updateClientUseCase implements IUseCase{
 
     }
     async execute(dados:ClientEntity):Promise<ClientEntity|undefined> {
-        return await this._repository.updateById(dados)
+        return await this._repository.update(dados)
     }
 }
 

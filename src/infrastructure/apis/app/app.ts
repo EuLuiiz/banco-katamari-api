@@ -29,7 +29,8 @@ const debugLog: debug.IDebugger = debug('app');
 
 //Usos da api
 app.use(express.json());
-app.use(cors())
+app.use(express.urlencoded());
+app.use(cors());
 
 //Log
 const loggerOptions: expressWinston.LoggerOptions = {

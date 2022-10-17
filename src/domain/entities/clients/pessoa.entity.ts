@@ -5,11 +5,11 @@ import { IAddressEntity } from './address.entity'
 
 
 export interface IPessoaEntity {
-    indexId?: number,
+    pessoa_id?: number,
     endereco?: IAddressEntity,
     cep:string,
-    limiteCredito: number,
-    dataCadastro: Date,
-    dataAtualizacao: Date,
+    limite_credito: number,
+    dataCadastro?: Date,
+    dataAtualizacao?: Date,
     observacao: string
 }

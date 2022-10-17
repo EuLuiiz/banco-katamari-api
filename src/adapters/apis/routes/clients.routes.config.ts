@@ -21,6 +21,14 @@ export class ClientsRoutes extends CommonRoutesConfig {
                 ClientsMiddlewares.validateClientRepeated,
                 ClientsController.create);
 
+        //Rota para enviar arquivos
+        this.app.route('/client/bulk')
+            .post(
+                ClientsMiddlewares.uploadFile().single('file'),
+                ClientsMiddlewares.parseXlsx,
+                ClientsController.createClientBulk
+            ) //A função do tipo multer(uploadFile), vai receber um arquivo (single)
+
         this.app.route('/clients/:idClient')
             .all(ClientsMiddlewares.validateClientExist)
             .get(ClientsController.listID)

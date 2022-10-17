@@ -8,7 +8,7 @@ class deleteClientUseCase implements IUseCase {
     }
 
     async execute(id: number): Promise<void> {
-        return await this._repository.deleteById(id)
+        return await this._repository.delete(id)
     }
 }
 
