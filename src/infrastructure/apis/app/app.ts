@@ -13,6 +13,7 @@ import debug from 'debug';
 //Arquivos
 import { CommonRoutesConfig } from '../../../adapters/apis/routes/common.routes.config'
 import { ClientsRoutes } from '../../../adapters/apis/routes/clients.routes.config';
+import { AccountsRoutes } from '../../../adapters/apis/routes/accounts.routes.config';
 // import { AccountsRoutes } from './account/accounts.routes.config';
 
 //Iniciando a Aplicação
@@ -51,7 +52,7 @@ app.use(expressWinston.logger(loggerOptions));
 
 //Adicionando a rota de clientes no array usando no app
 routes.push(new ClientsRoutes(app));
-// routes.push(new AccountsRoutes(app));
+routes.push(new AccountsRoutes(app));
 
 const runningMensage = `Servidor: OK [Porta: ${port}]`;
 //Uma rota simples apenas para testar se está funcionando

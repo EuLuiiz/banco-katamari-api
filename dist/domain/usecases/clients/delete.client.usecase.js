@@ -17,11 +17,11 @@ class deleteClientUseCase {
     constructor(_repository) {
         this._repository = _repository;
     }
-    execute(id) {
+    execute(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this._repository.delete(id);
+            return yield this._repository.delete(data.id);
         });
     }
 }
 exports.default = new deleteClientUseCase(clients_repository_1.default);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVsZXRlLmNsaWVudC51c2VjYXNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL2RvbWFpbi91c2VjYXNlcy9jbGllbnRzL2RlbGV0ZS5jbGllbnQudXNlY2FzZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLDJHQUFrRjtBQUlsRixNQUFNLG1CQUFtQjtJQUNyQixZQUFvQixXQUErQjtRQUEvQixnQkFBVyxHQUFYLFdBQVcsQ0FBb0I7SUFFbkQsQ0FBQztJQUVLLE9BQU8sQ0FBQyxFQUFVOztZQUNwQixPQUFPLE1BQU0sSUFBSSxDQUFDLFdBQVcsQ0FBQyxNQUFNLENBQUMsRUFBRSxDQUFDLENBQUE7UUFDNUMsQ0FBQztLQUFBO0NBQ0o7QUFFRCxrQkFBZSxJQUFJLG1CQUFtQixDQUFDLDRCQUFpQixDQUFDLENBQUMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVsZXRlLmNsaWVudC51c2VjYXNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL2RvbWFpbi91c2VjYXNlcy9jbGllbnRzL2RlbGV0ZS5jbGllbnQudXNlY2FzZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLDJHQUFrRjtBQUlsRixNQUFNLG1CQUFtQjtJQUNyQixZQUFvQixXQUErQjtRQUEvQixnQkFBVyxHQUFYLFdBQVcsQ0FBb0I7SUFFbkQsQ0FBQztJQUVLLE9BQU8sQ0FBQyxJQUFrQjs7WUFDNUIsT0FBTyxNQUFNLElBQUksQ0FBQyxXQUFXLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsQ0FBQTtRQUNqRCxDQUFDO0tBQUE7Q0FDSjtBQUVELGtCQUFlLElBQUksbUJBQW1CLENBQUMsNEJBQWlCLENBQUMsQ0FBQyJ9

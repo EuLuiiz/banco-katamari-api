@@ -14,5 +14,6 @@ export default MySqlDatabase.getInstance().createModel(
         bairro: DataTypes.STRING,
         cidade: DataTypes.STRING,
         estado: DataTypes.STRING,
+        id_da_pessoa:DataTypes.INTEGER
     }
 )

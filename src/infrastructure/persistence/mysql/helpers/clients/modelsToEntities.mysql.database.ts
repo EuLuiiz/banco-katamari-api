@@ -1,10 +1,10 @@
 //Arquivo que vai fazer o tratamento das informações pega do banco de dados e enviadas corretamente para a requisição
 //Receber os dados do banco de dados para retornar do tipo cliente entity
 
-import { ClientEntity } from "../../../../domain/entities/clients/client.entity";
-import { IPessoaEntity } from "../../../../domain/entities/clients/pessoa.entity";
-import { IPessoaFisicaEntity } from "../../../../domain/entities/clients/pessoaFisica.entity";
-import { IPessoaJuridicaEntity } from "../../../../domain/entities/clients/pessoaJuridica.entity";
+import { ClientEntity } from "../../../../../domain/entities/clients/client.entity";
+import { IPessoaEntity } from "../../../../../domain/entities/clients/pessoa.entity";
+import { IPessoaFisicaEntity } from "../../../../../domain/entities/clients/pessoaFisica.entity";
+import { IPessoaJuridicaEntity } from "../../../../../domain/entities/clients/pessoaJuridica.entity";
 
 export default function (dados: any) {
     //Se não existir os dados que foi pedida, retorne

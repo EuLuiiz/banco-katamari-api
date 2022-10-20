@@ -9,8 +9,8 @@ class listIDClientUseCase implements IUseCase {
     }
 
     //Caso o list não funcionar dessa maneira, troque o ID por: data: { clientId: number }, alterando os parenteses por: data.clientId
-    async execute(id: number): Promise<ClientEntity | undefined> {
-        return await this._repository.listID(id);
+    async execute(data: {id: number}): Promise<ClientEntity | undefined> {
+        return await this._repository.listID(data.id);
     }
 }
 

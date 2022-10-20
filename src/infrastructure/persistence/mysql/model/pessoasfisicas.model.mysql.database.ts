@@ -6,10 +6,10 @@ export default MySqlDatabase.getInstance().createModel(
     {
         pessoa_fisica_id: {
             type: DataTypes.INTEGER,
-            primaryKey: true
+            primaryKey: true,
         },
         nome: DataTypes.STRING,
         cpf: DataTypes.STRING,
-        pessoa_id: DataTypes.INTEGER
+        id_da_pessoa: DataTypes.INTEGER
     }
 )

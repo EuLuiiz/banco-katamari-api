@@ -23,24 +23,27 @@ class ClientsMiddleware {
         }
     }
     async validateClientExist(request: express.Request, response: express.Response, next: express.NextFunction) {
-        const user = await listIDClientUsecase.execute(Number(request.params.idClient));
+        const user = await listIDClientUsecase.execute({
+            id: Number(request.params.clientID)
+        });
         if (user) {
             logger.info(['Cliente encontrado:', user])
             next()
         } else {
-            logger.error([`CPF/CNPJ: ${request.params.idClient} não encontrado, tente novamente.`])
-            response.status(404).send({ error: `CPF/CNPJ: ${request.params.idClient} não encontrado, tente novamente.` })
+            logger.error([`Relatório: ID-${request.params.idClient} não encontrado, tente novamente.`])
+            response.status(404).send({ error: `Relatório: ID-${request.params.idClient} não encontrado, tente novamente.` })
         }
     }
+    //Arrumar validações
     async validateClientRepeated(request: express.Request, response: express.Response, next: express.NextFunction) {
 
         //Foi usado um if mais simples
-        let resourceID: number = ('cpf' in request.body ? request.body.cpf : request.body.cnpj)
-        const user = await listIDClientUsecase.execute(resourceID);
+        let id: number = ('cpf' in request.body ? request.body.cpf : request.body.cnpj)
+        const user = await listIDClientUsecase.execute({id});
         if (!user) {
             next()
         } else {
-            response.status(404).send({ error: `CPF/CNPJ: ${resourceID} já existe, faça o login ou acione o suporte` });
+            response.status(404).send({ error: `CPF-CNPJ: ${id} já existe, faça o login ou acione o suporte` });
         }
     }
 
@@ -52,14 +55,16 @@ class ClientsMiddleware {
                     cb(null, path.resolve('uploads'));
                 },
                 filename: (request, file, cb) => {
-                    cb(null, `${Date.now()} - Arquivo de: ${file.originalname.toLocaleUpperCase()}`)
+                    cb(null, `${Date.now()}-${file.originalname.toLocaleLowerCase()}`)
                 }
             })
         })
     }
 
     async parseXlsx(request: express.Request, response: express.Response, next: express.NextFunction) {
-        request.body.fileData = xlsxFilesInterface.parse(request.file?.path!);
+        request.body.fileData = xlsxFilesInterface.parse(request.file!.path);
+        console.log(xlsxFilesInterface.parse(request.file!.path))
+        console.log('----------------------')
         next();
     }
 }

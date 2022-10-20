@@ -14,8 +14,8 @@ import enderecosModel from "../../infrastructure/persistence/mysql/model/enderec
 import pessoasfisicasModel from "../../infrastructure/persistence/mysql/model/pessoasfisicas.model.mysql.database";
 import pessoasjuridicasModel from "../../infrastructure/persistence/mysql/model/pessoasjuridicas.model.mysql.database";
 //Os arquivos que vão tratar os dados da requisição ou da resposta
-import entitiesToModels from "../../infrastructure/persistence/mysql/helpers/entitiesToModels.mysql.database";
-import modelsToEntities from "../../infrastructure/persistence/mysql/helpers/modelsToEntities.mysql.database";
+import entitiesToModels from "../../infrastructure/persistence/mysql/helpers/clients/entitiesToModels.mysql.database";
+import modelsToEntities from "../../infrastructure/persistence/mysql/helpers/clients/modelsToEntities.mysql.database";
 
 export class ClientsRepository implements IClientsRepository {
     //O constructor agora recebe os parametros os model que ela vai usar
@@ -28,17 +28,17 @@ export class ClientsRepository implements IClientsRepository {
     ) {
         //Informando suas relações (1 to N)
         this._modelPessoas.hasOne(this._modelPessoasFisicas, {
-            foreignKey: 'pessoa_id',
+            foreignKey: 'id_da_pessoa',
             as: 'pessoaFisica'
         });
 
         this._modelPessoas.hasOne(this._modelPessoasJuridicas, {
-            foreignKey: 'pessoa_id',
+            foreignKey: 'id_da_pessoa',
             as: 'pessoaJuridica'
         });
 
         this._modelPessoas.hasOne(this._modelEnderecos, {
-            foreignKey: 'pessoa_id',
+            foreignKey: 'id_da_pessoa',
             as: 'endereco'
         });
     }
@@ -52,14 +52,17 @@ export class ClientsRepository implements IClientsRepository {
         const pessoaModel = await this._database.create(this._modelPessoas, pessoa);
         //Se for uma pessoa fisica, vai chamar o método para criar na tabela a pessoa fisica
         if (pessoaFisica) {
+            pessoaFisica.id_da_pessoa = pessoaModel.null;
             const pessoaFisicaModel = await this._database.create(this._modelPessoasFisicas, pessoaFisica);
         }
         //O mesmo com a pessoa juridica
         if (pessoaJuridica) {
+            pessoaJuridica.id_da_pessoa = pessoaModel.null;
             const pessoaJuridicaModel = await this._database.create(this._modelPessoasJuridicas, pessoaJuridica);
         }
         //O mesmo para endereço
         if (endereco) {
+            endereco.id_da_pessoa = pessoaModel.null
             const enderecoModel = await this._database.create(this._modelEnderecos, endereco);
         }
         //Retornando os dados que foi criado
@@ -80,16 +83,17 @@ export class ClientsRepository implements IClientsRepository {
         return clients;
     }
 
-    async listID(resourceId: number): Promise<ClientEntity | undefined> {
+    async listID(id: number): Promise<ClientEntity | undefined> {
         try {
             //No database, vai usar o método de listar por ID, ultilizando o model de pessoas e mandando o ID como parametro, pedindo para incluir junto as outras informações da tabela caso tiver
-            const cliente = await this._database.listID(this._modelPessoas, resourceId, {
+            const cliente = await this._database.listID(this._modelPessoas, id, {
                 include: [
                     'pessoaFisica',
                     'pessoaJuridica',
                     'endereco'
                 ]
             });
+            console.log(cliente)
             //Vai pegar os dados que foi pego no banco de dados e 'converter' de uma forma que seja entendivel pela aplicação
             return modelsToEntities(cliente);
         } catch (err) {
@@ -124,9 +128,9 @@ export class ClientsRepository implements IClientsRepository {
     }
 
     async delete(id: number): Promise<void> {
-        await this._database.delete(this._modelPessoasFisicas, { pessoa_id: id });
-        await this._database.delete(this._modelPessoasJuridicas, { pessoa_id: id });
-        await this._database.delete(this._modelEnderecos, { pessoa_id: id });
+        await this._database.delete(this._modelPessoasFisicas, { id_da_pessoa: id });
+        await this._database.delete(this._modelPessoasJuridicas, { id_da_pessoa: id });
+        await this._database.delete(this._modelEnderecos, { id_da_pessoa: id });
         await this._database.delete(this._modelPessoas, { pessoa_id: id });
     }
 }

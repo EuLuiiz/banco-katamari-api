@@ -21,17 +21,23 @@ class ClientsController {
     }
 
     async listID(request: express.Request, response: express.Response) {
-        const dados = await listIDClientUsecase.execute(Number(request.params.clientID));
+        const dados = await listIDClientUsecase.execute({
+            id: Number(request.params.clientID)
+        });
         response.status(200).send(dados);
     }
 
     async update(request: express.Request, response: express.Response) {
-        const dados = await updateClientUsecase.execute(request.body);
+        const dado = request.body;
+        dado.pessoa_id = request.params.clientID;
+        const dados = await updateClientUsecase.execute(dado);
         response.status(200).send(dados);
     }
 
     async delete(request: express.Request, response: express.Response) {
-        const dados = await deleteClientUsecase.execute(Number(request.params.clientID));
+        const dados = await deleteClientUsecase.execute({
+            id: Number(request.params.clientID)
+        });
         response.status(204).send();
     }
 
@@ -39,7 +45,7 @@ class ClientsController {
     async createClientBulk(request: express.Request, response: express.Response) {
         //Contador para retornar a quantidade de usuários que foi mapeada
         let countUsers = 0;
-        for(;countUsers<request.body.fileData.lenght;countUsers++){
+        for (countUsers = 0; countUsers < request.body.fileData.length; countUsers++) {
             await createClientUsecase.execute(request.body.fileData[countUsers]);
         }
         return response.status(201).send({

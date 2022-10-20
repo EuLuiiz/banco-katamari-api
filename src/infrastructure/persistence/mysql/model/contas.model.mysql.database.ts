@@ -1,15 +1,15 @@
 import { MySqlDatabase } from "../mysql.database";
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
 export default MySqlDatabase.getInstance().createModel(
-    'pessoas_juridicas',
+    'contas',
     {
-        pessoa_juridica_id: {
+        conta_id: {
             type: DataTypes.INTEGER,
             primaryKey: true
         },
-        razao_social: DataTypes.STRING,
-        cnpj: DataTypes.STRING,
+        saldo: DataTypes.INTEGER,
+        numero_da_conta: DataTypes.INTEGER,
         id_da_pessoa: DataTypes.INTEGER
     }
 )

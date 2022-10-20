@@ -22,14 +22,14 @@ export class ClientsRoutes extends CommonRoutesConfig {
                 ClientsController.create);
 
         //Rota para enviar arquivos
-        this.app.route('/client/bulk')
+        this.app.route('/clients/bulk')
             .post(
                 ClientsMiddlewares.uploadFile().single('file'),
                 ClientsMiddlewares.parseXlsx,
                 ClientsController.createClientBulk
             ) //A função do tipo multer(uploadFile), vai receber um arquivo (single)
 
-        this.app.route('/clients/:idClient')
+        this.app.route('/clients/:clientID')
             .all(ClientsMiddlewares.validateClientExist)
             .get(ClientsController.listID)
             .put(

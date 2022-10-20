@@ -14,9 +14,19 @@ export class CreateClientUseCase implements IUseCase {
 
     async execute(data: ClientEntity): Promise<ClientEntity | undefined> {
         data.endereco = await this._viaCep.preencherEndereco(data.cep);
-        
-        if(!data.endereco){
+
+        if (!data.endereco) {
             data.endereco = await this._apiCep.preencherEndereco(data.cep);
+        }
+        if (!data.endereco) {
+            data.endereco = {
+                cep: "00000000",
+                logradouro: undefined,
+                complemento: undefined,
+                bairro: 'Bairro Teste',
+                cidade: 'Cidade Offline',
+                estado: 'SEM-NET'
+            }
         }
         return await this._repository.create(data);
     }

@@ -18,11 +18,11 @@ class listIDClientUseCase {
         this._repository = _repository;
     }
     //Caso o list não funcionar dessa maneira, troque o ID por: data: { clientId: number }, alterando os parenteses por: data.clientId
-    execute(id) {
+    execute(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this._repository.listID(id);
+            return yield this._repository.listID(data.id);
         });
     }
 }
 exports.default = new listIDClientUseCase(clients_repository_1.default);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdElELmNsaWVudC51c2VjYXNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL2RvbWFpbi91c2VjYXNlcy9jbGllbnRzL2xpc3RJRC5jbGllbnQudXNlY2FzZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLDJHQUFrRjtBQUtsRixNQUFNLG1CQUFtQjtJQUNyQixZQUFvQixXQUErQjtRQUEvQixnQkFBVyxHQUFYLFdBQVcsQ0FBb0I7SUFFbkQsQ0FBQztJQUVELGtJQUFrSTtJQUM1SCxPQUFPLENBQUMsRUFBVTs7WUFDcEIsT0FBTyxNQUFNLElBQUksQ0FBQyxXQUFXLENBQUMsTUFBTSxDQUFDLEVBQUUsQ0FBQyxDQUFDO1FBQzdDLENBQUM7S0FBQTtDQUNKO0FBRUQsa0JBQWUsSUFBSSxtQkFBbUIsQ0FBQyw0QkFBaUIsQ0FBQyxDQUFDIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdElELmNsaWVudC51c2VjYXNlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL2RvbWFpbi91c2VjYXNlcy9jbGllbnRzL2xpc3RJRC5jbGllbnQudXNlY2FzZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLDJHQUFrRjtBQUtsRixNQUFNLG1CQUFtQjtJQUNyQixZQUFvQixXQUErQjtRQUEvQixnQkFBVyxHQUFYLFdBQVcsQ0FBb0I7SUFFbkQsQ0FBQztJQUVELGtJQUFrSTtJQUM1SCxPQUFPLENBQUMsSUFBa0I7O1lBQzVCLE9BQU8sTUFBTSxJQUFJLENBQUMsV0FBVyxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsRUFBRSxDQUFDLENBQUM7UUFDbEQsQ0FBQztLQUFBO0NBQ0o7QUFFRCxrQkFBZSxJQUFJLG1CQUFtQixDQUFDLDRCQUFpQixDQUFDLENBQUMifQ==

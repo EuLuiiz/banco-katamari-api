@@ -1,6 +1,6 @@
 //Arquivo que vai tratar os dados enviados na requisição de uma forma onde seja salvo corretamente no banco de dados, é como se fosse um middleware
 
-import { ClientEntity } from "../../../../domain/entities/clients/client.entity";
+import { ClientEntity } from "../../../../../domain/entities/clients/client.entity";
 
 //O tratamento é feito a partir de uma função que vai receber os dados do cliente e 'converter' para os modelos do banco de dados
 export default function (cliente: ClientEntity) {
