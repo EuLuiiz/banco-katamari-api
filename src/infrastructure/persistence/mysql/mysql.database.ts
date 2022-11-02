@@ -3,7 +3,7 @@ import * as Sequelize from 'sequelize';
 //Importanto o Model para configurar as funções especificas do banco SQL
 import { IDatabaseModel } from '../databasemodel.interface';
 //Importando o arquivo de configuração para fazer a conexão
-import databaseConfig from '../../config/database.config';
+import { databaseConfig } from '../../config/mysql.config';
 
 export class MySqlDatabase implements IDatabaseModel {
     private static _instance: MySqlDatabase;
@@ -15,8 +15,8 @@ export class MySqlDatabase implements IDatabaseModel {
     private _port: number;
     private _adapter: Sequelize.Sequelize;
 
-    constructor(){
-        this._db = databaseConfig.db!;
+    constructor() {
+        this._db = databaseConfig.database!;
         this._username = databaseConfig.username!;
         this._password = databaseConfig.password!;
         this._host = databaseConfig.host!;
@@ -71,9 +71,9 @@ export class MySqlDatabase implements IDatabaseModel {
 
     //Vai listar usando o ID e incluindo o que for configurado para incluir
     listID(model: Sequelize.ModelCtor<Sequelize.Model<any, any>>, dataId: number, includes: object): any {
-        try{
+        try {
             return model.findByPk(dataId, includes);
-        } catch(err){
+        } catch (err) {
             throw new Error((err as Error).message);
         }
     }
